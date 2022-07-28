@@ -14,14 +14,14 @@ public class GameRepository {
                 .getClient()
                 .create(GameInterface.class);
 
-        String field = "fields name; search \"" + name + "\"; limit 20;";
+        String field = "fields name,cover.url; search \"" + name + "\"; limit 20;";
         //Log.d("teste", field);
 
         Call<List<Game>> call = client.searchGame(field);
         call.enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
-                Log.d("teste", (response.body()).toString());
+                //Log.d("body", (response.body()).toString());
                 cb.onSuccess(response.body());
             }
 
