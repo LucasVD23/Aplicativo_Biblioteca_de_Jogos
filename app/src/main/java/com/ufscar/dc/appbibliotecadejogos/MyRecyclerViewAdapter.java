@@ -33,7 +33,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
+        View view = mInflater.inflate(R.layout.recyclerview_card, parent, false);
         return new ViewHolder(view);
     }
 
@@ -42,17 +42,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         Cover cover = mData.get(position).getCover();
         String gameUrl = null;
-        if(cover != null)
-            gameUrl = "https:" + cover.getUrl();
-        Log.d("teste", gameUrl);
+        if(cover != null){
+            gameUrl = "https:" + cover.getUrl().replace("t_thumb", "t_cover_big");
+            Log.d("teste", gameUrl);
+        }
+        else {
+            Game game = mData.get(position);
+            holder.viewNome.setText(game.getName());
+            //holder.viewId.setText(game.getId().toString());
+        }
         Picasso
                 .get()
                 .load(gameUrl)
                 .error(R.drawable.image_not_found)
                 .into(holder.mGameCover);
-        Game game = mData.get(position);
-        holder.viewNome.setText(game.getName());
-        //holder.viewId.setText(game.getId().toString());
     }
 
     // total number of rows
@@ -60,7 +63,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public int getItemCount() {
         return mData.size();
     }
-
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

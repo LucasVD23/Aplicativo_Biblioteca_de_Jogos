@@ -14,6 +14,7 @@ import java.util.List;
 public class MainViewModel extends ViewModel {
     final MutableLiveData<Boolean> showLoading = new MutableLiveData<>(false);
     final MutableLiveData<List<Game>> games = new MutableLiveData<>();
+    final MutableLiveData<Game> game = new MutableLiveData<>();
 
     public MutableLiveData<Boolean> getShowLoading() {
         return showLoading;
@@ -25,12 +26,28 @@ public class MainViewModel extends ViewModel {
 
     public void search(String name) {
         showLoading.setValue(true);
-        GameRepository.getGame(name, new GameRepository.GamesCallback() {
+        GameRepository.getGames(name, new GameRepository.GamesCallback() {
             @Override
             public void onSuccess(List<Game> list_games) {
                 showLoading.setValue(false);
                 //Log.d("teste", list_games.toString());
                 games.setValue(list_games);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+
+            }
+        });
+    }
+
+    public void details(Integer id) {
+        showLoading.setValue(true);
+        GameRepository.getGameDetails(id, new GameRepository.GameCallback() {
+            @Override
+            public void onSuccess(Game selected_game) {
+                showLoading.setValue(false);
+                game.setValue(selected_game);
             }
 
             @Override

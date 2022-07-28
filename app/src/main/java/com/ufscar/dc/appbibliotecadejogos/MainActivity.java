@@ -3,6 +3,7 @@ package com.ufscar.dc.appbibliotecadejogos;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
@@ -25,26 +26,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        //mainViewModel.getGames().observe(this, binding.textView::setText);
         mainViewModel.getShowLoading().observe(this, show -> {
             binding.progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
         });
-        /*
-        mainViewModel.getGames().observe(this, games -> {
-            binding.container.removeAllViews();
-            for (Game q: games) {
-                TextView tv = new TextView(MainActivity.this);
-                tv.setText(q.getName() + "/n");
-                binding.container.addView(tv);
-            }
-            TextView tv = new TextView(MainActivity.this);
-            tv.setText(games.get(0).getName() + "/n");
-            binding.container.addView(tv);
-        });*/
 
-
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        int numberOfColumns = 2;
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
 
         MainViewModel myViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
@@ -57,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.newButton.setOnClickListener(v -> {
-            //String characterName = binding.personNameEditText.getText().toString();
-            mainViewModel.search("mario");
+            String jogo = binding.pesquisarJogo.getText().toString();
+            mainViewModel.search(jogo);
         });
     }
 }
