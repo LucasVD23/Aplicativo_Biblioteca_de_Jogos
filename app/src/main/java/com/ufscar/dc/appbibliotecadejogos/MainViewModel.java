@@ -29,7 +29,7 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onSuccess(List<Game> list_games) {
                 showLoading.setValue(false);
-                Log.d("teste", list_games.toString());
+                //Log.d("teste", list_games.toString());
                 games.setValue(list_games);
             }
 
