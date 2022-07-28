@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Biblioteca de Jogos</string>
+    <string name="add_collection">Adicionar</string>
+    <string name = "genres">Gêneros</string>
+    <string name = "plataforms">Plataformas</string>
+    <string name = "description_title">Descrição</string>
 </resources>

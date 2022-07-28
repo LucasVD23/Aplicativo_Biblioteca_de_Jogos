@@ -21,7 +21,7 @@ public class GameRepository {
         call.enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
-                Log.d("body", (response.body()).toString());
+                Log.d("teste", (response.body()).toString());
                 cb.onSuccess(response.body());
             }
 
