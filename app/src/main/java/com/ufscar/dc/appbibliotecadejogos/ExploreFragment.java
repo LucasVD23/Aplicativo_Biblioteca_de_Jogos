@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 
 import com.ufscar.dc.appbibliotecadejogos.databinding.FragmentExploreBinding;
 
@@ -42,6 +43,19 @@ public class ExploreFragment extends Fragment {
             binding.recyclerView.setAdapter(cardsRecyclerView);
         });
 
+        // Pesquisa pelo teclado
+        binding.pesquisarJogo.setOnEditorActionListener((tv, actionId, keyEvent) -> {
+            boolean handled = false;
+
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                mainViewModel.search(tv.getText().toString());
+                handled = true;
+            }
+
+            return handled;
+        });
+
+        // Pesquisa pelo botão
         binding.newButton.setOnClickListener(v -> {
             String jogo = binding.pesquisarJogo.getText().toString();
             mainViewModel.search(jogo);
