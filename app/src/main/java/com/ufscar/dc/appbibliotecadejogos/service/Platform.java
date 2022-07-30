@@ -10,9 +10,9 @@ public class Platform implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("platform")
+    @SerializedName("name")
     @Expose
-    String platform;
+    private String platform_name;
 
     public Integer getId() {
         return id;
@@ -22,13 +22,13 @@ public class Platform implements Serializable {
         this.id = id;
     }
 
-    public String getPlatform() {
-        return platform;
+    public String getPlatform_name() {
+        return platform_name;
     }
 
-    public void setPlatform(String platform) { this.platform = platform;}
+    public void setPlatform_name(String platform_name) { this.platform_name = platform_name;}
     @Override
     public String toString(){
-        return id + " - Plataforma: " + platform;
+        return id + " - Plataforma: " + platform_name;
     }
 }

@@ -10,9 +10,9 @@ public class Genre implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("genre")
+    @SerializedName("name")
     @Expose
-    String genre;
+    private String genre_name;
 
     public Integer getId() {
         return id;
@@ -22,15 +22,15 @@ public class Genre implements Serializable {
         this.id = id;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getGenre_name() {
+        return genre_name;
     }
 
-    public void setGenre(String genres) {this.genre = genre;}
+    public void setGenre_name(String genre_name) {this.genre_name = genre_name;}
 
     @Override
     public String toString(){
-        return id + " - Genero: " + genre;
+        return id + " - Genero: " + genre_name;
     }
 
 }

@@ -10,9 +10,9 @@ public class ReleaseDate implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("release_date")
+    @SerializedName("human")
     @Expose
-    String release_date;
+    private String release;
 
     public Integer getId() {
         return id;
@@ -22,14 +22,17 @@ public class ReleaseDate implements Serializable {
         this.id = id;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getRelease() {
+        return release;
     }
 
-    public void setRelease_date(String release_date) { this.release_date = release_date;}
+    public void setRelease(String release) {
+        this.release = release;
+    }
+
     @Override
     public String toString(){
-        return id + " - Release: " + release_date;
+        return id + " - Release: " + release;
     }
 
 }

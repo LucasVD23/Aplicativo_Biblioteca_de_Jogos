@@ -24,9 +24,9 @@ public class GameActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         Game game = (Game) bundle.getSerializable("game");
-
         binding.nome.setText(game.getName());
-        binding.ReleaseDate.setText(game.getRelease_dates().get(0).getRelease_date());
+        binding.ReleaseDate.setText(game.getRelease_dates().get(0).getRelease());
 
     }
+
 }
