@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Retrofit1App">
         <activity
             android:name="com.ufscar.dc.appbibliotecadejogos.MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

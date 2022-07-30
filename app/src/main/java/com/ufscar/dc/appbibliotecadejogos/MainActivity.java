@@ -4,19 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.ufscar.dc.appbibliotecadejogos.databinding.ActivityMainBinding;
-import com.ufscar.dc.appbibliotecadejogos.service.Game;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,30 +20,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Tela inicial de quando o aplicativo é aberto
-        replaceFragment(new HomeFragment());
+        replaceFragment(new HomeFragment(), getString(R.string.home_title));
 
         // Navegação do app pela barra inferior
         binding.bottomNavigationMenu.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    replaceFragment(new HomeFragment());
-                    break;
-                case R.id.explorar:
-                    replaceFragment(new ExploreFragment());
-                    break;
-                case R.id.colecao:
-                    replaceFragment(new CollectionFragment());
-                    break;
+            String title;
+            int id = item.getItemId();
+
+            if (id == R.id.home) {
+                title = getString(R.string.home_title);
+                replaceFragment(new HomeFragment(), title);
+            }
+            else if (id == R.id.explore) {
+                title = getString(R.string.explore_title);
+                replaceFragment(new ExploreFragment(), title);
+            }
+            else if (id == R.id.collection) {
+                title = getString(R.string.collection_title);
+                replaceFragment(new CollectionFragment(), title);
             }
             return true;
         });
     }
 
-    private void replaceFragment(Fragment fragment) {
+    private void replaceFragment(Fragment fragment, String title) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.commit();
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
     }
 
 }
