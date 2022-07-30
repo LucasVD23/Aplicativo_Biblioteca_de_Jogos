@@ -17,6 +17,10 @@ public class Game implements Serializable{
     @Expose
     private Cover cover;
 
+    @SerializedName("rating")
+    @Expose
+    private Float rating;
+
     @SerializedName("release_dates")
     @Expose
     private List<ReleaseDate> release_dates;
@@ -28,6 +32,10 @@ public class Game implements Serializable{
     @SerializedName("platforms")
     @Expose
     private List<Platform> platforms;
+
+    @SerializedName("summary")
+    @Expose
+    private String description;
 
 
     public Integer getId() {
@@ -54,6 +62,10 @@ public class Game implements Serializable{
         this.cover = cover;
     }
 
+    public Float getRating(){return rating;}
+
+    public void setRating(Float rating){this.rating = rating;}
+
     public String toString(){
         return id + " - Nome: " + name;
     }
@@ -69,6 +81,10 @@ public class Game implements Serializable{
     public void setPlatforms(List<Platform> platforms) { this.platforms = platforms;}
 
     public List<Platform> getPlatforms(){ return platforms;}
+
+    public String getDescription(){return description;}
+
+    public void setDescription(String description){this.description = description;}
 
 
 }

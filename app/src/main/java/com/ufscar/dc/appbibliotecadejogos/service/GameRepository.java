@@ -14,9 +14,9 @@ public class GameRepository {
                 .getClient()
                 .create(GameInterface.class);
 
-        String field = "fields name,cover.url, release_dates.human,genres.name, platforms.name; " +
+        String field = "fields name, rating,cover.url, release_dates.human,genres.name, platforms.name,summary; " +
                 "search \"" + name + "\"; limit 20;";
-        //Log.d("teste", field);
+        Log.d("teste", field);
 
         Call<List<Game>> call = client.searchGame(field);
         call.enqueue(new Callback<List<Game>>() {
@@ -40,7 +40,8 @@ public class GameRepository {
                 .getClient()
                 .create(GameInterface.class);
 
-        String field = "fields name,cover.url, release_dates.human,genres.name, platforms.name; where id = " + id + ";";
+        String field = "fields name,rating,cover.url, release_dates.human,genres.name, " +
+                "platforms.name,summary; where id = " + id + ";";
         //Log.d("teste", field);
 
         Call<List<Game>> call = client.searchGameDetails(field);

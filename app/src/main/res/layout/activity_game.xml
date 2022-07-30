@@ -48,35 +48,24 @@
         android:layout_marginStart="135dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="135dp"
-        android:layout_marginBottom="423dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/add_collection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ReleaseDate"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.157" />
 
     <TextView
         android:id="@+id/Rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
+        android:layout_marginStart="220dp"
         android:layout_marginTop="320dp"
         android:layout_marginEnd="127dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/AddCollection"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Genres"
-        android:layout_width="53dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="400dp"
-        android:text="@string/genres"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Rating_title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -84,28 +73,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="48dp"
         android:text="@string/plataforms"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Genres" />
 
     <TextView
-        android:id="@+id/DescriptionTitle"
+        android:id="@+id/Genres"
+        android:layout_width="53dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="456dp"
+        android:text="@string/genres"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Rating_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/description_title"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="312dp"
+        android:layout_marginBottom="137dp"
+        android:text="Rating_titie"
+        app:layout_constraintBottom_toTopOf="@+id/Genres"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
+
+    <TextView
+        android:id="@+id/desc_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="315dp"
+        android:text="desc_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Plataforms" />
 
     <TextView
-        android:id="@+id/Description"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="21dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DescriptionTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/desc_title"
+        tools:layout_editor_absoluteX="36dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
