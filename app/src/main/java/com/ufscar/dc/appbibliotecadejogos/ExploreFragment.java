@@ -16,7 +16,7 @@ public class ExploreFragment extends Fragment {
 
     private FragmentExploreBinding binding;
     private MainViewModel mainViewModel;
-    private MyRecyclerViewAdapter myRecyclerViewAdapter;
+    private CardsRecyclerView cardsRecyclerView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -35,11 +35,11 @@ public class ExploreFragment extends Fragment {
         MainViewModel myViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         myViewModel.getGames().observe(getViewLifecycleOwner(), list_games -> {
-            myRecyclerViewAdapter = new MyRecyclerViewAdapter(
+            cardsRecyclerView = new CardsRecyclerView(
                     getActivity(),
                     list_games
             );
-            binding.recyclerView.setAdapter(myRecyclerViewAdapter);
+            binding.recyclerView.setAdapter(cardsRecyclerView);
         });
 
         binding.newButton.setOnClickListener(v -> {

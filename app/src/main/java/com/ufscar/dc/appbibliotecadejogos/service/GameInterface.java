@@ -19,6 +19,6 @@ public interface GameInterface {
     @POST("games")
     Call<List<Game>> searchGame(@Body String fields);
 
-    @POST("game")
-    Call<Game> searchGameDetails(@Body String fields);
+    @POST("games")
+    Call<List<Game>> searchGameDetails(@Body String fields);
 }

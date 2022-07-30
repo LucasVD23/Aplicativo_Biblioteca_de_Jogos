@@ -32,38 +32,32 @@ public class GameRepository {
         });
     }
 
-    public static void getGameDetails(Integer id, GameCallback cb){
+    public static void getGameDetails(String id, GamesCallback cb){
         GameInterface client = GameAPIClient
                 .getClient()
                 .create(GameInterface.class);
 
-        String field = "fields name; where id = " + id;
-        //Log.d("teste", field);
+        String field = "fields name,cover.url; where id = " + id + ";";
+        Log.d("teste", field);
 
-        Call<Game> call = client.searchGameDetails(field);
-        call.enqueue(new Callback<Game>() {
+        Call<List<Game>> call = client.searchGameDetails(field);
+        call.enqueue(new Callback<List<Game>>() {
             @Override
-            public void onResponse(Call<Game> call, Response<Game> response) {
+            public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
                 //Log.d("body", (response.body()).toString());
                 cb.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(Call<Game> call, Throwable t) {
+            public void onFailure(Call<List<Game>> call, Throwable t) {
                 cb.onError(t.getMessage());
             }
         });
     }
 
     public interface GamesCallback {
-        public void onSuccess(List<Game> games);
+        void onSuccess(List<Game> games);
 
-        public void onError(String errorMessage);
-    }
-
-    public interface GameCallback {
-        public void onSuccess(Game game);
-
-        public void onError(String errorMessage);
+        void onError(String errorMessage);
     }
 }

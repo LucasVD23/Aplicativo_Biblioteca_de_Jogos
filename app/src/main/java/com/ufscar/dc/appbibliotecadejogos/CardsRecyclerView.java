@@ -1,6 +1,7 @@
 package com.ufscar.dc.appbibliotecadejogos;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,22 +10,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.ufscar.dc.appbibliotecadejogos.game.GameFragment;
 import com.ufscar.dc.appbibliotecadejogos.service.Cover;
 import com.ufscar.dc.appbibliotecadejogos.service.Game;
 
 import java.util.List;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.ViewHolder> {
 
     private List<Game> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<Game> data) {
+    CardsRecyclerView(Context context, List<Game> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -39,18 +42,19 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Cover cover = mData.get(position).getCover();
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Cover cover = getItem(position).getCover();
         String gameUrl = null;
+        Game game = getItem(position);
+        Log.d("pos", position + "");
         if(cover != null){
             gameUrl = "https:" + cover.getUrl().replace("t_thumb", "t_cover_big");
-            Log.d("teste", gameUrl);
         }
-        else {
-            Game game = mData.get(position);
-            holder.viewNome.setText(game.getName());
-            //holder.viewId.setText(game.getId().toString());
-        }
+        /*else {
+            gameUrl = "https://static.vecteezy.com/ti/vetor-gratis/p3/3052919-ilustracao-jogo-stick-controlador-cartoon-vetor.jpg";
+        }*/
+        holder.viewNome.setText(game.getName());
+        //Log.d("teste", game.getId().toString());
         Picasso
                 .get()
                 .load(gameUrl)
@@ -78,14 +82,29 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            /*if (mClickListener != null)
+                mClickListener.onItemClick(view, getAdapterPosition());*/
+            Game game = getItem(getAdapterPosition());
+            String id = game.getId().toString();
+            Bundle bundle = new Bundle();
+            bundle.putString("id", id);
+
+            GameFragment fragment = new GameFragment();
+            fragment.setArguments(bundle);
+
+            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 
     // convenience method for getting data at click position
-    /*String getItem(int id) {
+    Game getItem(int id) {
         return mData.get(id);
-    }*/
+    }
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
@@ -96,4 +115,5 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+
 }
