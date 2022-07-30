@@ -4,14 +4,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Cover implements Serializable {
+public class Platform implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("url")
+    @SerializedName("platform")
     @Expose
-    private String url;
+    String platform;
 
     public Integer getId() {
         return id;
@@ -21,15 +22,13 @@ public class Cover implements Serializable {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPlatform() {
+        return platform;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
+    public void setPlatform(String platform) { this.platform = platform;}
+    @Override
     public String toString(){
-        return id + " - URL: " + url;
+        return id + " - Plataforma: " + platform;
     }
 }

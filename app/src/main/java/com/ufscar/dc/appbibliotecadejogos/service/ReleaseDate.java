@@ -4,14 +4,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Cover implements Serializable {
+public class ReleaseDate implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("url")
+    @SerializedName("release_date")
     @Expose
-    private String url;
+    String release_date;
 
     public Integer getId() {
         return id;
@@ -21,15 +22,15 @@ public class Cover implements Serializable {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
+    public void setRelease_date(String release_date) { this.release_date = release_date;}
+    @Override
     public String toString(){
-        return id + " - URL: " + url;
+        return id + " - Release: " + release_date;
     }
+
 }
+

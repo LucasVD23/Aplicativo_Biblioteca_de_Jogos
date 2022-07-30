@@ -5,13 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Cover implements Serializable {
+
+public class Genre implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("url")
+    @SerializedName("genre")
     @Expose
-    private String url;
+    String genre;
 
     public Integer getId() {
         return id;
@@ -21,15 +22,15 @@ public class Cover implements Serializable {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    public void setGenre(String genres) {this.genre = genre;}
 
+    @Override
     public String toString(){
-        return id + " - URL: " + url;
+        return id + " - Genero: " + genre;
     }
+
 }

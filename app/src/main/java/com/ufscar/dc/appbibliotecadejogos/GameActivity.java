@@ -2,10 +2,13 @@ package com.ufscar.dc.appbibliotecadejogos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.ufscar.dc.appbibliotecadejogos.databinding.ActivityGameBinding;
 import com.ufscar.dc.appbibliotecadejogos.databinding.ActivityMainBinding;
+import com.ufscar.dc.appbibliotecadejogos.service.Game;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -17,6 +20,13 @@ public class GameActivity extends AppCompatActivity {
         binding = ActivityGameBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.nome.setText(getIntent().getExtras().getString("name"));
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+
+        Game game = (Game) bundle.getSerializable("game");
+
+        binding.nome.setText(game.getName());
+        binding.ReleaseDate.setText(game.getRelease_dates().get(0).getRelease_date());
+
     }
 }

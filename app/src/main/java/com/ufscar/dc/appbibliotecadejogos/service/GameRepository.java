@@ -14,7 +14,8 @@ public class GameRepository {
                 .getClient()
                 .create(GameInterface.class);
 
-        String field = "fields name,cover.url; search \"" + name + "\"; limit 20;";
+        String field = "fields name,cover.url, release_dates.human,genres.name, platforms.name; " +
+                "search \"" + name + "\"; limit 20;";
         //Log.d("teste", field);
 
         Call<List<Game>> call = client.searchGame(field);
@@ -28,6 +29,8 @@ public class GameRepository {
             @Override
             public void onFailure(Call<List<Game>> call, Throwable t) {
                 cb.onError(t.getMessage());
+                //Log.d("body", t.getMessage());
+
             }
         });
     }
@@ -37,8 +40,8 @@ public class GameRepository {
                 .getClient()
                 .create(GameInterface.class);
 
-        String field = "fields name,cover.url; where id = " + id + ";";
-        Log.d("teste", field);
+        String field = "fields name,cover.url, release_dates.human,genres.name, platforms.name; where id = " + id + ";";
+        //Log.d("teste", field);
 
         Call<List<Game>> call = client.searchGameDetails(field);
         call.enqueue(new Callback<List<Game>>() {

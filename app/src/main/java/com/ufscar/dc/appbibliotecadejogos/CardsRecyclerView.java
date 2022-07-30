@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.ufscar.dc.appbibliotecadejogos.game.GameFragment;
 import com.ufscar.dc.appbibliotecadejogos.service.Cover;
 import com.ufscar.dc.appbibliotecadejogos.service.Game;
 
@@ -86,10 +85,13 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
             /*if (mClickListener != null)
                 mClickListener.onItemClick(view, getAdapterPosition());*/
             Game game = getItem(getAdapterPosition());
-            String name = game.getName();
 
             Intent intent = new Intent(view.getContext(), GameActivity.class);
-            intent.putExtra("name", name);
+
+            //setResult(RESULT_OK,intent);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("game", game);
+            intent.putExtras(bundle);
             view.getContext().startActivity(intent);
 
             /*
