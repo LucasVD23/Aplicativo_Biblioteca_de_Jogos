@@ -1,6 +1,7 @@
 package com.ufscar.dc.appbibliotecadejogos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -85,6 +86,13 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
             /*if (mClickListener != null)
                 mClickListener.onItemClick(view, getAdapterPosition());*/
             Game game = getItem(getAdapterPosition());
+            String name = game.getName();
+
+            Intent intent = new Intent(view.getContext(), GameActivity.class);
+            intent.putExtra("name", name);
+            view.getContext().startActivity(intent);
+
+            /*
             String id = game.getId().toString();
             Bundle bundle = new Bundle();
             bundle.putString("id", id);
@@ -97,7 +105,7 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
                     .beginTransaction()
                     .replace(R.id.container, fragment)
                     .addToBackStack(null)
-                    .commit();
+                    .commit();*/
         }
     }
 
