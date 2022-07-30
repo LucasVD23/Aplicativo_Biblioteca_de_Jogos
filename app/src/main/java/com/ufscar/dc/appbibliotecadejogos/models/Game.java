@@ -1,10 +1,10 @@
-package com.ufscar.dc.appbibliotecadejogos.service;
+package com.ufscar.dc.appbibliotecadejogos.models;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
-
-import com.google.gson.annotations.SerializedName;
 
 public class Game implements Serializable{
     @SerializedName("id")
@@ -16,27 +16,6 @@ public class Game implements Serializable{
     @SerializedName("cover")
     @Expose
     private Cover cover;
-
-    @SerializedName("rating")
-    @Expose
-    private Float rating;
-
-    @SerializedName("release_dates")
-    @Expose
-    private List<ReleaseDate> release_dates;
-
-    @SerializedName("genres")
-    @Expose
-    private List<Genre> genres;
-
-    @SerializedName("platforms")
-    @Expose
-    private List<Platform> platforms;
-
-    @SerializedName("summary")
-    @Expose
-    private String description;
-
 
     public Integer getId() {
         return id;
@@ -62,13 +41,37 @@ public class Game implements Serializable{
         this.cover = cover;
     }
 
+    @SerializedName("rating")
+    @Expose
+    private Float rating;
+
+    @SerializedName("release_dates")
+    @Expose
+    private List<ReleaseDate> release_dates;
+
+    @SerializedName("genres")
+    @Expose
+    private List<Genre> genres;
+
+    @SerializedName("platforms")
+    @Expose
+    private List<Platform> platforms;
+
+    @SerializedName("summary")
+    @Expose
+    private String description;
+/*
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }*/
+
     public Float getRating(){return rating;}
 
     public void setRating(Float rating){this.rating = rating;}
-
-    public String toString(){
-        return id + " - Nome: " + name;
-    }
 
     public void setRelease_dates(List<ReleaseDate>release_dates){ this.release_dates = release_dates;}
 
@@ -85,6 +88,4 @@ public class Game implements Serializable{
     public String getDescription(){return description;}
 
     public void setDescription(String description){this.description = description;}
-
-
 }

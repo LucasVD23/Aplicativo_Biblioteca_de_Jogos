@@ -1,4 +1,6 @@
-package com.ufscar.dc.appbibliotecadejogos.service;
+package com.ufscar.dc.appbibliotecadejogos.services;
+
+import com.ufscar.dc.appbibliotecadejogos.models.Game;
 
 import java.util.List;
 
@@ -6,7 +8,6 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface GameInterface {
 
@@ -18,7 +19,4 @@ public interface GameInterface {
     })
     @POST("games")
     Call<List<Game>> searchGame(@Body String fields);
-
-    @POST("games")
-    Call<List<Game>> searchGameDetails(@Body String fields);
 }

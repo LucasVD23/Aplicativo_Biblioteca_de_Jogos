@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import com.ufscar.dc.appbibliotecadejogos.databinding.ActivityMainBinding;
+import com.ufscar.dc.appbibliotecadejogos.fragments.CollectionFragment;
+import com.ufscar.dc.appbibliotecadejogos.fragments.ExploreFragment;
+import com.ufscar.dc.appbibliotecadejogos.fragments.HomeFragment;
 
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.ufscar.dc.appbibliotecadejogos;
+package com.ufscar.dc.appbibliotecadejogos.fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ufscar.dc.appbibliotecadejogos.R;
 
 public class CollectionFragment extends Fragment {
     @Override

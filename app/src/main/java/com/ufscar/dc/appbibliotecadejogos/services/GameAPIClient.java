@@ -1,4 +1,4 @@
-package com.ufscar.dc.appbibliotecadejogos.service;
+package com.ufscar.dc.appbibliotecadejogos.services;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

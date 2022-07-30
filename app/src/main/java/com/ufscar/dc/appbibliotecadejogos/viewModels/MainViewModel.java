@@ -1,12 +1,12 @@
-package com.ufscar.dc.appbibliotecadejogos;
+package com.ufscar.dc.appbibliotecadejogos.viewModels;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.ufscar.dc.appbibliotecadejogos.service.Game;
-import com.ufscar.dc.appbibliotecadejogos.service.GameRepository;
+import com.ufscar.dc.appbibliotecadejogos.models.Game;
+import com.ufscar.dc.appbibliotecadejogos.services.GameRepository;
 
 import java.util.List;
 
@@ -29,24 +29,8 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onSuccess(List<Game> list_games) {
                 showLoading.setValue(false);
-                //Log.d("teste", list_games.toString());
+                Log.d("teste", list_games.get(0).getName());
                 games.setValue(list_games);
-            }
-
-            @Override
-            public void onError(String errorMessage) {
-
-            }
-        });
-    }
-
-    public void details(String id) {
-        showLoading.setValue(true);
-        GameRepository.getGameDetails(id, new GameRepository.GamesCallback() {
-            @Override
-            public void onSuccess(List<Game> selected_game) {
-                showLoading.setValue(false);
-                games.setValue(selected_game);
             }
 
             @Override

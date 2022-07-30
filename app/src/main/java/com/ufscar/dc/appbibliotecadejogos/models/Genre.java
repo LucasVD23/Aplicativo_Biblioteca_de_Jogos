@@ -1,18 +1,18 @@
-package com.ufscar.dc.appbibliotecadejogos.service;
+package com.ufscar.dc.appbibliotecadejogos.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class ReleaseDate implements Serializable {
+
+public class Genre implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("human")
+    @SerializedName("name")
     @Expose
-    private String release;
+    private String genre_name;
 
     public Integer getId() {
         return id;
@@ -22,18 +22,15 @@ public class ReleaseDate implements Serializable {
         this.id = id;
     }
 
-    public String getRelease() {
-        return release;
+    public String getGenre_name() {
+        return genre_name;
     }
 
-    public void setRelease(String release) {
-        this.release = release;
-    }
+    public void setGenre_name(String genre_name) {this.genre_name = genre_name;}
 
     @Override
     public String toString(){
-        return id + " - Release: " + release;
+        return id + " - Genero: " + genre_name;
     }
 
 }
-

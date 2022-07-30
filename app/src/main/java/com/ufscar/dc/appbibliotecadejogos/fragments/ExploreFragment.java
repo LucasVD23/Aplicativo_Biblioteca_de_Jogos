@@ -1,4 +1,4 @@
-package com.ufscar.dc.appbibliotecadejogos;
+package com.ufscar.dc.appbibliotecadejogos.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 
+import com.ufscar.dc.appbibliotecadejogos.recyclers.CardsRecyclerView;
+import com.ufscar.dc.appbibliotecadejogos.viewModels.MainViewModel;
 import com.ufscar.dc.appbibliotecadejogos.databinding.FragmentExploreBinding;
 
 public class ExploreFragment extends Fragment {

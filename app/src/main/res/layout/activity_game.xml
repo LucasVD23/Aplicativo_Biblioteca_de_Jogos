@@ -7,116 +7,112 @@
 
     <TextView
         android:id="@+id/nome"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="36dp"
         android:text="Nome"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="182dp"
-        android:layout_height="157dp"
+        android:layout_width="247dp"
+        android:layout_height="246dp"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="144dp"
         android:layout_marginEnd="112dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/ReleaseDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="169dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="170dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="31dp"
         android:text="19-08-1999"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/nome"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/AddCollection"
-        android:layout_width="141dp"
-        android:layout_height="wrap_content"
+        android:layout_width="152dp"
+        android:layout_height="52dp"
         android:layout_marginStart="135dp"
-        android:layout_marginTop="31dp"
         android:layout_marginEnd="135dp"
         android:layout_marginBottom="30dp"
         android:text="@string/add_collection"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ReleaseDate"
-        app:layout_constraintVertical_bias="0.157" />
-
-    <TextView
-        android:id="@+id/Rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginEnd="127dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Rating_title"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.09" />
 
     <TextView
         android:id="@+id/Plataforms"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="36dp"
         android:text="@string/plataforms"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Genres" />
 
     <TextView
         android:id="@+id/Genres"
-        android:layout_width="53dp"
+        android:layout_width="0dp"
         android:layout_height="21dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="456dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/genres"
+        app:layout_constraintEnd_toStartOf="@+id/Rating"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/AddCollection" />
 
     <TextView
-        android:id="@+id/Rating_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="312dp"
-        android:layout_marginBottom="137dp"
-        android:text="Rating_titie"
-        app:layout_constraintBottom_toTopOf="@+id/Genres"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome" />
-
-    <TextView
-        android:id="@+id/desc_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="315dp"
-        android:text="desc_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Plataforms" />
-
-    <TextView
-        android:id="@+id/description"
+        android:id="@+id/Rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/desc_title"
-        tools:layout_editor_absoluteX="36dp" />
+        android:layout_marginEnd="36dp"
+        android:background="#3B953E"
+        android:text="88"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddCollection" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Plataforms">
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

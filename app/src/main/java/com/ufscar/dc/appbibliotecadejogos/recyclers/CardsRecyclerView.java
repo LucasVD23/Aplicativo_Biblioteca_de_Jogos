@@ -1,4 +1,4 @@
-package com.ufscar.dc.appbibliotecadejogos;
+package com.ufscar.dc.appbibliotecadejogos.recyclers;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.ufscar.dc.appbibliotecadejogos.service.Cover;
-import com.ufscar.dc.appbibliotecadejogos.service.Game;
+import com.ufscar.dc.appbibliotecadejogos.GameActivity;
+import com.ufscar.dc.appbibliotecadejogos.R;
+import com.ufscar.dc.appbibliotecadejogos.models.Cover;
+import com.ufscar.dc.appbibliotecadejogos.models.Game;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    CardsRecyclerView(Context context, List<Game> data) {
+    public CardsRecyclerView(Context context, List<Game> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -93,13 +95,8 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
             bundle.putSerializable("game", game);
             intent.putExtras(bundle);
             view.getContext().startActivity(intent);
-
-            /*
-            String id = game.getId().toString();
-            Bundle bundle = new Bundle();
-            bundle.putString("id", id);
-
-            GameFragment fragment = new GameFragment();
+/*
+            GameDetailsFragment fragment = new GameDetailsFragment();
             fragment.setArguments(bundle);
 
             AppCompatActivity activity = (AppCompatActivity) view.getContext();
