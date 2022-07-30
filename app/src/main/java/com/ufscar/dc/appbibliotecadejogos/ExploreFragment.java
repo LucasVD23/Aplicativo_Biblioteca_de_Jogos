@@ -1,5 +1,6 @@
 package com.ufscar.dc.appbibliotecadejogos;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 
 import com.ufscar.dc.appbibliotecadejogos.databinding.FragmentExploreBinding;
 
@@ -48,17 +50,16 @@ public class ExploreFragment extends Fragment {
             boolean handled = false;
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                // Fazendo o teclado sumir depois de pressionado o botão de busca
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+
+                // Realizando a busca pelos jogos
                 mainViewModel.search(tv.getText().toString());
                 handled = true;
             }
 
             return handled;
-        });
-
-        // Pesquisa pelo botão
-        binding.newButton.setOnClickListener(v -> {
-            String jogo = binding.pesquisarJogo.getText().toString();
-            mainViewModel.search(jogo);
         });
 
         return binding.getRoot();

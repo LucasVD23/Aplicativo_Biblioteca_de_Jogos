@@ -2,6 +2,7 @@
     <string name="app_name">Biblioteca de Jogos</string>
     <string name="home_title">Início</string>
     <string name="explore_title">Explorar</string>
+    <string name="input_hint">Pesquisar</string>
     <string name="collection_title">Coleção</string>
     <string name="add_collection">Adicionar</string>
     <string name="genres">Gêneros</string>
