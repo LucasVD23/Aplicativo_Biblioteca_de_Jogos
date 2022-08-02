@@ -13,6 +13,8 @@ import com.ufscar.dc.appbibliotecadejogos.models.Genre;
 import com.ufscar.dc.appbibliotecadejogos.models.Platform;
 import com.ufscar.dc.appbibliotecadejogos.recyclers.CardsRecyclerView;
 import com.ufscar.dc.appbibliotecadejogos.viewModels.MainViewModel;
+import android.content.SharedPreferences;
+import android.content.Context;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -72,8 +74,10 @@ public class GameActivity extends AppCompatActivity {
                 .into(binding.imageView);
 
         binding.AddCollection.setOnClickListener(view -> {
-                    Log.d("teste", "teste_button");
+                    SharedPreferences preferences = getSharedPreferences("game_id",Context.MODE_PRIVATE);
                 });
+
+
 /*
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
