@@ -31,17 +31,36 @@ public class GameActivity extends AppCompatActivity {
         Game game = (Game) bundle.getSerializable("game");
 
         binding.nome.setText(game.getName());
-        if (game.getRelease_dates().get(0) != null)
+        if (game.getRelease_dates() != null)
             binding.ReleaseDate.setText(game.getRelease_dates().get(0).getRelease());
-        for (Platform p: game.getPlatforms()) {
-            binding.Plataforms.setText(p.getPlatform_name());
+
+        StringBuilder platforms = new StringBuilder();
+        StringBuilder genres = new StringBuilder();
+
+        if (game.getPlatforms() != null) {
+            for (Platform p : game.getPlatforms()) {
+                platforms.append(" - ").append(p.getPlatform_name()).append("\n");
+            }
+            binding.Plataforms.setText(platforms.toString());
         }
-        for (Genre p: game.getGenres()) {
-            binding.Genres.setText(p.getGenre_name());
+        if (game.getGenres() != null) {
+            for (Genre p : game.getGenres()) {
+                genres.append(" - ").append(p.getGenre_name()).append("\n");
+            }
+            binding.Genres.setText(genres.toString());
         }
-        if (game.getRating() != null)
-            binding.Rating.setText(game.getRating().toString());
-        binding.description.setText(game.getDescription());
+        if (game.getRating() != null) {
+            binding.Rating.setText(String.valueOf(Math.round(game.getRating())));
+            if (game.getRating() <= 50)
+                binding.Rating.setBackgroundColor(0xffc21000);
+            else if (game.getRating() > 50 && game.getRating() < 75)
+                binding.Rating.setBackgroundColor(0xffffff00);
+            else if (game.getRating() >= 75)
+                binding.Rating.setBackgroundColor(0xff00a000);
+        }
+        if (game.getDescription() != null) {
+            binding.description.setText(game.getDescription());
+        }
         String gameUrl = game.getCover().getUrl();
         if(gameUrl!=null) {
             gameUrl = "https:" + gameUrl.replace("t_thumb", "t_cover_big");

@@ -25,7 +25,33 @@ public class GameRepository {
         call.enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
-                Log.d("body", response.body().toString());
+                //Log.d("body", response.body().toString());
+                cb.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Game>> call, Throwable t) {
+                cb.onError(t.getMessage());
+                //Log.d("body", t.getMessage());
+
+            }
+        });
+    }
+
+    public static void lancamentos(String name, GamesCallback cb){
+        GameInterface client = GameAPIClient
+                .getClient()
+                .create(GameInterface.class);
+
+        String field = "fields game.name,game.id,game.cover; where date > 1538129354; sort date asc;";
+
+        Log.d("teste", field);
+
+        Call<List<Game>> call = client.searchLancamentos(field);
+        call.enqueue(new Callback<List<Game>>() {
+            @Override
+            public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
+                //Log.d("body", response.body().toString());
                 cb.onSuccess(response.body());
             }
 

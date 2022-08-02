@@ -19,4 +19,7 @@ public interface GameInterface {
     })
     @POST("games")
     Call<List<Game>> searchGame(@Body String fields);
+
+    @POST("release_dates")
+    Call<List<Game>> searchLancamentos(@Body String fields);
 }
