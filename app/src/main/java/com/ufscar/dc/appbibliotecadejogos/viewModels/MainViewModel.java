@@ -9,6 +9,7 @@ import com.ufscar.dc.appbibliotecadejogos.models.Game;
 import com.ufscar.dc.appbibliotecadejogos.models.Lancamento;
 import com.ufscar.dc.appbibliotecadejogos.services.GameRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,13 +75,18 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
-    public void salvos() {
+    public void salvos(ArrayList<Integer> collection) {
         showLoading.setValue(true);
         /*if (!isConnected) {
             errorMessage.setValue("No Internet connection. Try again later");
             return;
         }*/
-        GameRepository.getSalvos(new GameRepository.GamesCallback() {
+        if (collection.isEmpty()) {
+            showLoading.setValue(false);
+            Log.d("teste", "vazio");
+            return;
+        }
+        GameRepository.getSalvos(collection, new GameRepository.GamesCallback() {
             @Override
             public void onSuccess(List<Game> list_games) {
                 showLoading.setValue(false);

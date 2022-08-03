@@ -1,5 +1,7 @@
 package com.ufscar.dc.appbibliotecadejogos.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ufscar.dc.appbibliotecadejogos.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.ufscar.dc.appbibliotecadejogos.databinding.FragmentHomeBinding;
-import com.ufscar.dc.appbibliotecadejogos.recyclers.BannersRecyclerView;
 import com.ufscar.dc.appbibliotecadejogos.recyclers.CardsRecyclerView;
 import com.ufscar.dc.appbibliotecadejogos.viewModels.MainViewModel;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class CollectionFragment extends Fragment {
 
@@ -46,9 +51,25 @@ public class CollectionFragment extends Fragment {
             binding.recyclerView.setAdapter(cardsRecyclerView);
         });
 
-        mainViewModel.salvos();//falta logica de pegar os ids salvos
+        mainViewModel.salvos(loadCollection());
 
         // Inflate the layout for this fragment
         return binding.getRoot();
+    }
+
+    private ArrayList<Integer> loadCollection() {
+        SharedPreferences preferences = this.requireActivity().getSharedPreferences("game_collection",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("collection", null);
+
+        Type type = new TypeToken<ArrayList<Integer>>() {}.getType();
+        ArrayList<Integer> game_collection = gson.fromJson(json, type);
+
+        if (game_collection == null) {
+            // if the array list is empty
+            // creating a new array list.
+            game_collection = new ArrayList<>();
+        }
+        return (game_collection);
     }
 }
