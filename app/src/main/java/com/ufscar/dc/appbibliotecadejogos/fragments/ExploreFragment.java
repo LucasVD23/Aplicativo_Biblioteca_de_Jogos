@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,9 @@ import android.view.inputmethod.InputMethodManager;
 import com.ufscar.dc.appbibliotecadejogos.recyclers.CardsRecyclerView;
 import com.ufscar.dc.appbibliotecadejogos.viewModels.MainViewModel;
 import com.ufscar.dc.appbibliotecadejogos.databinding.FragmentExploreBinding;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ExploreFragment extends Fragment {
 
@@ -47,7 +53,33 @@ public class ExploreFragment extends Fragment {
             binding.recyclerView.setAdapter(cardsRecyclerView);
         });
 
+        final TextWatcher textWatcherSearchListener = new TextWatcher() {
+            final android.os.Handler handler = new android.os.Handler();
+            Runnable runnable;
+
+            public void onTextChanged(final CharSequence s, int start, final int before, int count) {
+                handler.removeCallbacks(runnable);
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+                // ira executar apos um tempo de pausa na digitação
+                runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        mainViewModel.search(binding.pesquisarJogo.getText().toString());
+                    }
+                };
+                handler.postDelayed(runnable, 500);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        };
+
         // Pesquisa pelo teclado
+        showKeyboard();
+        binding.pesquisarJogo.addTextChangedListener(textWatcherSearchListener);
         binding.pesquisarJogo.setOnEditorActionListener((tv, actionId, keyEvent) -> {
             boolean handled = false;
 
@@ -57,7 +89,7 @@ public class ExploreFragment extends Fragment {
                 inputManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 
                 // Realizando a busca pelos jogos
-                mainViewModel.search(tv.getText().toString());
+                //mainViewModel.search(tv.getText().toString());
                 handled = true;
             }
 
@@ -67,4 +99,10 @@ public class ExploreFragment extends Fragment {
         return binding.getRoot();
 
     }
+
+    private void showKeyboard() {
+        binding.pesquisarJogo.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.RESULT_UNCHANGED_SHOWN);
+    };
 }
