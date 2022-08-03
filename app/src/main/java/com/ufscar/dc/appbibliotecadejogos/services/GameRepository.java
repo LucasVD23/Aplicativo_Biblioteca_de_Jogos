@@ -35,14 +35,13 @@ public class GameRepository {
                     Log.e("teste", String.valueOf(response.body()));
                     try {
                         Log.e("teste", "try");
-
+                        cb.onSuccess(response.body());
                     } catch (Exception e) {
                         Log.e("teste", "erro");
                     }
                 } else {
                     Log.e("teste", "json is null");
                 }
-                cb.onSuccess(response.body());
             }
 
             @Override
@@ -75,14 +74,13 @@ public class GameRepository {
                     Log.e("teste", String.valueOf(response.body()));
                     try {
                         Log.e("teste", "try");
-
+                        cb.onSuccess(response.body());
                     } catch (Exception e) {
                         Log.e("teste", "erro");
                     }
                 } else {
                     Log.e("teste", "json is null");
                 }
-                cb.onSuccess(response.body());
             }
 
             @Override
@@ -118,7 +116,7 @@ public class GameRepository {
                     Log.e("teste", String.valueOf(response.body()));
                     try {
                         Log.e("teste", "try");
-
+                        cb.onSuccess(response.body());
                     } catch (Exception e) {
                         Log.e("teste", "erro");
                     }
