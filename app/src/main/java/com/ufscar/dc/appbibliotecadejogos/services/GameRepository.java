@@ -1,13 +1,9 @@
 package com.ufscar.dc.appbibliotecadejogos.services;
 
-import android.os.Build;
 import android.util.Log;
 
 import com.ufscar.dc.appbibliotecadejogos.models.Game;
-import com.ufscar.dc.appbibliotecadejogos.models.Lancamento;
 
-import java.sql.Timestamp;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +49,7 @@ public class GameRepository {
         });
     }
 
-    public static void getLancamentos(LancamentosCallback cb){
+    public static void getRecomendacoes(GamesCallback cb){
         GameInterface client = GameAPIClient
                 .getClient()
                 .create(GameInterface.class);
@@ -61,15 +57,15 @@ public class GameRepository {
         Date date = new Date();
         //This method returns the time in millis
         int timeMilli = (int) (date.getTime()/1000);
-        String field = "fields game.name,game.rating,game.cover.url,game.release_dates.human,game.genres.name,game.platforms.name,game.summary;" +
-                " where date < " + timeMilli + "; limit 50; sort date desc;";
+        String field = "fields name,rating,cover.url,release_dates.human,genres.name,platforms.name,summary;" +
+                " where follows > 10 & first_release_date < " + timeMilli + "; limit 50; sort first_release_date desc;";
 
         Log.d("teste", field);
 
-        Call<List<Lancamento>> call = client.searchLancamentos(field);
-        call.enqueue(new Callback<List<Lancamento>>() {
+        Call<List<Game>> call = client.searchRecommends(field);
+        call.enqueue(new Callback<List<Game>>() {
             @Override
-            public void onResponse(Call<List<Lancamento>> call, Response<List<Lancamento>> response) {
+            public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
                 if (response.code()==200) {
                     Log.e("teste", String.valueOf(response.body()));
                     try {
@@ -84,7 +80,7 @@ public class GameRepository {
             }
 
             @Override
-            public void onFailure(Call<List<Lancamento>> call, Throwable t) {
+            public void onFailure(Call<List<Game>> call, Throwable t) {
                 //Log.d("body", t.getMessage());
                 cb.onError(t.getMessage());
             }
@@ -136,12 +132,6 @@ public class GameRepository {
 
     public interface GamesCallback {
         void onSuccess(List<Game> games);
-
-        void onError(String errorMessage);
-    }
-
-    public interface LancamentosCallback {
-        void onSuccess(List<Lancamento> lancamentos);
 
         void onError(String errorMessage);
     }

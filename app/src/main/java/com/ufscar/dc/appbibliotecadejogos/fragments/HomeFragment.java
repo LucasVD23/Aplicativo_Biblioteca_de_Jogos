@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ufscar.dc.appbibliotecadejogos.databinding.FragmentHomeBinding;
-import com.ufscar.dc.appbibliotecadejogos.recyclers.BannersRecyclerView;
+import com.ufscar.dc.appbibliotecadejogos.recyclers.CardsRecyclerView;
 import com.ufscar.dc.appbibliotecadejogos.viewModels.MainViewModel;
 
 
@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private MainViewModel mainViewModel;
-    private BannersRecyclerView bannersRecyclerView;
+    private CardsRecyclerView bannersRecyclerView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -39,15 +39,15 @@ public class HomeFragment extends Fragment {
 
         MainViewModel myViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        myViewModel.getLancamentos().observe(getViewLifecycleOwner(), list_games -> {
-            bannersRecyclerView = new BannersRecyclerView(
+        myViewModel.getPopulares().observe(getViewLifecycleOwner(), list_games -> {
+            bannersRecyclerView = new CardsRecyclerView(
                     getActivity(),
                     list_games
             );
             binding.recyclerView.setAdapter(bannersRecyclerView);
         });
 
-        mainViewModel.lancamentos();
+        mainViewModel.recommended();
 
         // Inflate the layout for this fragment
         return binding.getRoot();
