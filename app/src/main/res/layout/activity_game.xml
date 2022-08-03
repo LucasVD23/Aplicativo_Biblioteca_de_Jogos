@@ -29,32 +29,44 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="36dp"
                     android:text="Nome"
-                    android:textSize="24sp"
+                    android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:id="@+id/imageView"
-                    android:layout_width="247dp"
-                    android:layout_height="246dp"
-                    android:layout_marginStart="82dp"
-                    android:layout_marginTop="29dp"
-                    android:layout_marginEnd="82dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ReleaseDate"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:layout_constraintTop_toBottomOf="@+id/ReleaseDate">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="240dp"
+                        android:layout_height="320dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@tools:sample/avatars" />
+                </androidx.cardview.widget.CardView>
 
                 <Button
                     android:id="@+id/AddCollection"
-                    android:layout_width="152dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="52dp"
-                    android:layout_marginStart="130dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="23dp"
-                    android:layout_marginEnd="129dp"
+                    android:layout_marginEnd="30dp"
                     android:text="@string/add_collection"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +80,8 @@
                     android:layout_marginTop="96dp"
                     android:layout_marginEnd="20dp"
                     android:text="@string/genres"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/Rating"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -81,22 +95,25 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
                     android:text="-"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/Rating"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/GenresTitle" />
 
                 <TextView
                     android:id="@+id/Rating"
-                    android:layout_width="64dp"
-                    android:layout_height="42dp"
+                    android:layout_width="70dp"
+                    android:layout_height="44dp"
                     android:layout_marginTop="96dp"
                     android:layout_marginEnd="36dp"
                     android:autoText="false"
-                    android:background="#22FFFFFF"
+                    android:background="#00000000"
+                    android:shadowColor="#000000"
                     android:text="-"
                     android:textAlignment="center"
                     android:textColor="#202020"
                     android:textSize="34sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -108,6 +125,8 @@
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="36dp"
                     android:text="@string/plataforms"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Genres" />
@@ -120,6 +139,8 @@
                     android:layout_marginTop="11dp"
                     android:layout_marginEnd="36dp"
                     android:text="@string/description_title"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Plataforms" />
@@ -132,6 +153,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="36dp"
                     android:text="-"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/PlataformsTitle" />
@@ -143,7 +165,10 @@
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="36dp"
+                    android:layout_marginBottom="20dp"
                     android:text="Sem descrição"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -151,17 +176,28 @@
 
                 <TextView
                     android:id="@+id/ReleaseDate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="306dp"
+                    android:layout_marginEnd="36dp"
                     android:text="19-08-1999"
+                    android:textSize="16sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nome" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="36dp"
+                    android:text="Nota"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Rating" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

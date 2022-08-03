@@ -25,7 +25,6 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
 
     private List<Game> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
 
     // data is passed into the constructor
     public CardsRecyclerView(Context context, List<Game> data) {
@@ -51,9 +50,6 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
         if(cover != null){
             gameUrl = "https:" + cover.getUrl().replace("t_thumb", "t_cover_big");
         }
-        /*else {
-            gameUrl = "https://static.vecteezy.com/ti/vetor-gratis/p3/3052919-ilustracao-jogo-stick-controlador-cartoon-vetor.jpg";
-        }*/
         holder.viewNome.setText(game.getName());
         //Log.d("teste", game.getId().toString());
         Picasso
@@ -83,8 +79,6 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
 
         @Override
         public void onClick(View view) {
-            /*if (mClickListener != null)
-                mClickListener.onItemClick(view, getAdapterPosition());*/
             Game game = getItem(getAdapterPosition());
 
             Intent intent = new Intent(view.getContext(), GameActivity.class);
@@ -94,16 +88,6 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
             bundle.putSerializable("game", game);
             intent.putExtras(bundle);
             view.getContext().startActivity(intent);
-/*
-            GameDetailsFragment fragment = new GameDetailsFragment();
-            fragment.setArguments(bundle);
-
-            AppCompatActivity activity = (AppCompatActivity) view.getContext();
-            activity.getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .addToBackStack(null)
-                    .commit();*/
         }
     }
 
@@ -111,15 +95,4 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
     Game getItem(int id) {
         return mData.get(id);
     }
-
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
 }

@@ -31,7 +31,17 @@ public class GameRepository {
         call.enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
-                //Log.d("body", response.body().toString());
+                if (response.code()==200) {
+                    Log.e("teste", String.valueOf(response.body()));
+                    try {
+                        Log.e("teste", "try");
+
+                    } catch (Exception e) {
+                        Log.e("teste", "erro");
+                    }
+                } else {
+                    Log.e("teste", "json is null");
+                }
                 cb.onSuccess(response.body());
             }
 
@@ -52,7 +62,8 @@ public class GameRepository {
         Date date = new Date();
         //This method returns the time in millis
         int timeMilli = (int) (date.getTime()/1000);
-        String field = "fields game.name,game.rating,game.cover.url,game.release_dates.human,game.genres.name,game.platforms.name,game.summary; where date < " + timeMilli + "; limit 50; sort date desc;";
+        String field = "fields game.name,game.rating,game.cover.url,game.release_dates.human,game.genres.name,game.platforms.name,game.summary;" +
+                " where date < " + timeMilli + "; limit 50; sort date desc;";
 
         Log.d("teste", field);
 
@@ -61,7 +72,7 @@ public class GameRepository {
             @Override
             public void onResponse(Call<List<Lancamento>> call, Response<List<Lancamento>> response) {
                 if (response.code()==200) {
-                    Log.e("Here Arrived ID", String.valueOf(response.body()));
+                    Log.e("teste", String.valueOf(response.body()));
                     try {
                         Log.e("teste", "try");
 
@@ -94,15 +105,26 @@ public class GameRepository {
             else
                 ids.append(collection.get(i)).append(",");
         }
-        String field = "fields name,rating,cover.url,release_dates.human,genres.name,platforms.name,summary; where id = (" + ids + ");";
+        String field = "fields name,rating,cover.url,release_dates.human,genres.name,platforms.name,summary;" +
+                " where id = (" + ids + ");";
+
         Log.d("teste", field);
 
         Call<List<Game>> call = client.searchGame(field);
         call.enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
-                //Log.d("body", response.body().toString());
-                cb.onSuccess(response.body());
+                if (response.code()==200) {
+                    Log.e("teste", String.valueOf(response.body()));
+                    try {
+                        Log.e("teste", "try");
+
+                    } catch (Exception e) {
+                        Log.e("teste", "erro");
+                    }
+                } else {
+                    Log.e("teste", "json is null");
+                }
             }
 
             @Override

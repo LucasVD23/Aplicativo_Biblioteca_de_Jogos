@@ -60,14 +60,6 @@ public class Game implements Serializable{
     @SerializedName("summary")
     @Expose
     private String description;
-/*
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }*/
 
     public Float getRating(){return rating;}
 

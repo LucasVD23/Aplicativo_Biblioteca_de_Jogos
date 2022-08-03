@@ -26,9 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class GameActivity extends AppCompatActivity {
 
     private ActivityGameBinding binding;
-    private MainViewModel mainViewModel;
     ArrayList<Integer> collection;
-
 
     private ArrayList<Integer> loadCollection(){
         SharedPreferences preferences = getSharedPreferences("game_collection",Context.MODE_PRIVATE);
@@ -44,7 +42,6 @@ public class GameActivity extends AppCompatActivity {
             game_collection = new ArrayList<>();
         }
         return (game_collection);
-
     }
 
     private void saveCollection(int saved){
@@ -71,10 +68,13 @@ public class GameActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
+        getSupportActionBar().hide();
 
         Game game = (Game) bundle.getSerializable("game");
 
-        binding.nome.setText(game.getName());
+        if (game.getName() != null)
+            binding.nome.setText(game.getName());
+
         if (game.getRelease_dates() != null)
             binding.ReleaseDate.setText(game.getRelease_dates().get(0).getRelease());
 
@@ -96,11 +96,11 @@ public class GameActivity extends AppCompatActivity {
         if (game.getRating() != null) {
             binding.Rating.setText(String.valueOf(Math.round(game.getRating())));
             if (game.getRating() <= 50)
-                binding.Rating.setBackgroundColor(0xffc21000);
+                binding.Rating.setTextColor(0xffc21000);
             else if (game.getRating() > 50 && game.getRating() < 75)
-                binding.Rating.setBackgroundColor(0xffffff00);
+                binding.Rating.setTextColor(0xffffa500);
             else if (game.getRating() >= 75)
-                binding.Rating.setBackgroundColor(0xff00a000);
+                binding.Rating.setTextColor(0xff00a000);
         }
         if (game.getDescription() != null) {
             binding.description.setText(game.getDescription());
@@ -112,12 +112,10 @@ public class GameActivity extends AppCompatActivity {
                 gameUrl = "https:" + gameUrl.replace("t_thumb", "t_cover_big");
             }
         }
-        Picasso
-                .get()
+        Picasso.get()
                 .load(gameUrl)
                 .error(R.drawable.image_not_found)
-                .into(binding.imageView);
-
+                .into(binding.imageView2);
 
         collection = loadCollection();
 
@@ -127,7 +125,6 @@ public class GameActivity extends AppCompatActivity {
             binding.AddCollection.setBackgroundColor(Color.parseColor("#7A716E"));
             binding.AddCollection.setText(getString(R.string.remove_collection));
         }
-
 
         binding.AddCollection.setOnClickListener(view -> {
             if(saved.get() == 0){
@@ -147,29 +144,5 @@ public class GameActivity extends AppCompatActivity {
             }
 
         });
-/*
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-
-        mainViewModel.details(game.getId());
-
-        mainViewModel.getGame().observe(this, gameDetails -> {
-            String gameUrl = game.getCover().getUrl();
-            if(gameUrl!=null) {
-                gameUrl = "https:" + gameUrl.replace("t_thumb", "t_cover_big");
-            }
-            Log.d("teste", gameDetails.get(0).getName());
-            binding.nome.setText(game.getName());
-            //binding.ReleaseDate.setText(game.getRelease_dates().get(0).getRelease());
-            //binding.Rating.setText((String) game.getRating());
-            Picasso
-                    .get()
-                    .load(gameUrl)
-                    .error(R.drawable.image_not_found)
-                    .into(binding.imageView);
-
-            binding.AddCollection.setOnClickListener(view -> {
-                Log.d("teste","teste_button");
-            });
-        });*/
     }
 }

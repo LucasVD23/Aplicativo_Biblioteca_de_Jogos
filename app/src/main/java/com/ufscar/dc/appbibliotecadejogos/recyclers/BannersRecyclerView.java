@@ -26,7 +26,6 @@ public class BannersRecyclerView extends RecyclerView.Adapter<BannersRecyclerVie
 
     private List<Lancamento> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
 
     // data is passed into the constructor
     public BannersRecyclerView(Context context, List<Lancamento> data) {
@@ -52,9 +51,6 @@ public class BannersRecyclerView extends RecyclerView.Adapter<BannersRecyclerVie
         if(cover != null){
             gameUrl = "https:" + cover.getUrl().replace("t_thumb", "t_cover_big");
         }
-        /*else {
-            gameUrl = "https://static.vecteezy.com/ti/vetor-gratis/p3/3052919-ilustracao-jogo-stick-controlador-cartoon-vetor.jpg";
-        }*/
         holder.viewNome.setText(lancamento.getGame().getName());
         //Log.d("teste", game.getId().toString());
         Picasso
@@ -100,15 +96,4 @@ public class BannersRecyclerView extends RecyclerView.Adapter<BannersRecyclerVie
     Lancamento getItem(int id) {
         return mData.get(id);
     }
-
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
 }
