@@ -1,25 +1,67 @@
 package com.ufscar.dc.appbibliotecadejogos;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 import com.ufscar.dc.appbibliotecadejogos.databinding.ActivityGameBinding;
 import com.ufscar.dc.appbibliotecadejogos.models.Game;
 import com.ufscar.dc.appbibliotecadejogos.models.Genre;
 import com.ufscar.dc.appbibliotecadejogos.models.Platform;
-import com.ufscar.dc.appbibliotecadejogos.recyclers.CardsRecyclerView;
 import com.ufscar.dc.appbibliotecadejogos.viewModels.MainViewModel;
 import android.content.SharedPreferences;
 import android.content.Context;
+import android.widget.Toast;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameActivity extends AppCompatActivity {
 
     private ActivityGameBinding binding;
     private MainViewModel mainViewModel;
+    ArrayList<Integer> collection;
+
+
+    private ArrayList<Integer> loadCollection(){
+        SharedPreferences preferences = getSharedPreferences("game_collection",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("collection", null);
+
+        Type type = new TypeToken<ArrayList<Integer>>() {}.getType();
+        ArrayList<Integer> game_collection = gson.fromJson(json, type);
+
+        if (game_collection == null) {
+            // if the array list is empty
+            // creating a new array list.
+            game_collection = new ArrayList<>();
+        }
+        return (game_collection);
+
+    }
+
+    private void saveCollection(int saved){
+        SharedPreferences sharedPreferences = getSharedPreferences("game_collection", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+
+        String json = gson.toJson(collection);
+
+        editor.putString("collection", json);
+
+        editor.apply();
+        String msg = (saved == 0? getString(R.string.added_warning) : getString(R.string.removed_warning));
+        Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +118,35 @@ public class GameActivity extends AppCompatActivity {
                 .error(R.drawable.image_not_found)
                 .into(binding.imageView);
 
+
+        collection = loadCollection();
+
+        AtomicInteger saved = new AtomicInteger();
+        if(collection.contains(game.getId())){
+            saved.set(1);
+            binding.AddCollection.setBackgroundColor(Color.parseColor("#7A716E"));
+            binding.AddCollection.setText(getString(R.string.remove_collection));
+        }
+
+
         binding.AddCollection.setOnClickListener(view -> {
-                    SharedPreferences preferences = getSharedPreferences("game_id",Context.MODE_PRIVATE);
-                });
+            if(saved.get() == 0){
+                collection.add(game.getId());
+                Log.d("teste","saved");
+                saveCollection(saved.get());
+                binding.AddCollection.setBackgroundColor(Color.parseColor("#7A716E"));
+                binding.AddCollection.setText(getString(R.string.remove_collection));
+                saved.set(1);
+            }else{
+                collection.remove(game.getId());
+                Log.d("teste","deleted");
+                saveCollection(saved.get());
+                binding.AddCollection.setBackgroundColor(Color.parseColor("#F44336"));
+                binding.AddCollection.setText(getString(R.string.add_collection));
+                saved.set(0);
+            }
 
-
+        });
 /*
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 

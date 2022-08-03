@@ -5,7 +5,11 @@
     <string name="input_hint">Pesquisar</string>
     <string name="collection_title">Coleção</string>
     <string name="add_collection">Adicionar</string>
+    <string name="remove_collection">Remover</string>
+    <string name="added_warning">Jogo adicionado à coleção</string>
+    <string name="removed_warning">Jogo removido da coleção</string>
     <string name="genres">Gêneros</string>
     <string name="plataforms">Plataformas</string>
     <string name="description_title">Descrição</string>
+
 </resources>
