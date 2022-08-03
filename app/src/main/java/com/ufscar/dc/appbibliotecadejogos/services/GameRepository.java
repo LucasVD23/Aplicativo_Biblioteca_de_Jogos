@@ -8,6 +8,7 @@ import com.ufscar.dc.appbibliotecadejogos.models.Lancamento;
 
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -81,12 +82,18 @@ public class GameRepository {
         });
     }
 
-    public static void getSalvos(GamesCallback cb){
+    public static void getSalvos(ArrayList<Integer> collection, GamesCallback cb){
         GameInterface client = GameAPIClient
                 .getClient()
                 .create(GameInterface.class);
 
-        String ids = "1";
+        StringBuilder ids = new StringBuilder();
+        for (int i = 0; i < collection.size(); i++) {
+            if (i == collection.size()-1)
+                ids.append(collection.get(i));
+            else
+                ids.append(collection.get(i)).append(",");
+        }
         String field = "fields name,rating,cover.url,release_dates.human,genres.name,platforms.name,summary; where id = (" + ids + ");";
         Log.d("teste", field);
 
