@@ -18,17 +18,18 @@ import com.ufscar.dc.appbibliotecadejogos.GameActivity;
 import com.ufscar.dc.appbibliotecadejogos.R;
 import com.ufscar.dc.appbibliotecadejogos.models.Cover;
 import com.ufscar.dc.appbibliotecadejogos.models.Game;
+import com.ufscar.dc.appbibliotecadejogos.models.Lancamento;
 
 import java.util.List;
 
-public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.ViewHolder> {
+public class BannersRecyclerView extends RecyclerView.Adapter<BannersRecyclerView.ViewHolder> {
 
-    private List<Game> mData;
+    private List<Lancamento> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public CardsRecyclerView(Context context, List<Game> data) {
+    public BannersRecyclerView(Context context, List<Lancamento> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -44,9 +45,9 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Cover cover = getItem(position).getCover();
+        Cover cover = getItem(position).getGame().getCover();
         String gameUrl = null;
-        Game game = getItem(position);
+        Lancamento lancamento = getItem(position);
         Log.d("pos", position + "");
         if(cover != null){
             gameUrl = "https:" + cover.getUrl().replace("t_thumb", "t_cover_big");
@@ -54,7 +55,7 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
         /*else {
             gameUrl = "https://static.vecteezy.com/ti/vetor-gratis/p3/3052919-ilustracao-jogo-stick-controlador-cartoon-vetor.jpg";
         }*/
-        holder.viewNome.setText(game.getName());
+        holder.viewNome.setText(lancamento.getGame().getName());
         //Log.d("teste", game.getId().toString());
         Picasso
                 .get()
@@ -83,32 +84,20 @@ public class CardsRecyclerView extends RecyclerView.Adapter<CardsRecyclerView.Vi
 
         @Override
         public void onClick(View view) {
-            /*if (mClickListener != null)
-                mClickListener.onItemClick(view, getAdapterPosition());*/
-            Game game = getItem(getAdapterPosition());
+            Lancamento lancamento = getItem(getAdapterPosition());
 
             Intent intent = new Intent(view.getContext(), GameActivity.class);
 
             //setResult(RESULT_OK,intent);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("game", game);
+            bundle.putSerializable("game", lancamento.getGame());
             intent.putExtras(bundle);
             view.getContext().startActivity(intent);
-/*
-            GameDetailsFragment fragment = new GameDetailsFragment();
-            fragment.setArguments(bundle);
-
-            AppCompatActivity activity = (AppCompatActivity) view.getContext();
-            activity.getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .addToBackStack(null)
-                    .commit();*/
         }
     }
 
     // convenience method for getting data at click position
-    Game getItem(int id) {
+    Lancamento getItem(int id) {
         return mData.get(id);
     }
 

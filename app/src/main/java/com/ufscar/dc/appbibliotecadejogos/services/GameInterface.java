@@ -1,6 +1,7 @@
 package com.ufscar.dc.appbibliotecadejogos.services;
 
 import com.ufscar.dc.appbibliotecadejogos.models.Game;
+import com.ufscar.dc.appbibliotecadejogos.models.Lancamento;
 
 import java.util.List;
 
@@ -20,6 +21,21 @@ public interface GameInterface {
     @POST("games")
     Call<List<Game>> searchGame(@Body String fields);
 
+    @Headers({
+            "Client-ID: 2f0ln0qc2lt8z0a6viczwbyrp585re",
+            "Content-Type: text/plain",
+            "Authorization: Bearer uq3p45d39n1x1hj620yxymzulr3u32",
+            "Accept: application/json"
+    })
     @POST("release_dates")
-    Call<List<Game>> searchLancamentos(@Body String fields);
+    Call<List<Lancamento>> searchLancamentos(@Body String fields);
+
+    @Headers({
+            "Client-ID: 2f0ln0qc2lt8z0a6viczwbyrp585re",
+            "Content-Type: text/plain",
+            "Authorization: Bearer uq3p45d39n1x1hj620yxymzulr3u32",
+            "Accept: application/json"
+    })
+    @POST("games")
+    Call<List<Game>> getByIds(@Body String fields);
 }

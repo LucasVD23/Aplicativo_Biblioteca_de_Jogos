@@ -63,9 +63,12 @@ public class GameActivity extends AppCompatActivity {
         if (game.getDescription() != null) {
             binding.description.setText(game.getDescription());
         }
-        String gameUrl = game.getCover().getUrl();
-        if(gameUrl!=null) {
-            gameUrl = "https:" + gameUrl.replace("t_thumb", "t_cover_big");
+        String gameUrl = null;
+        if (game.getCover() != null){
+            gameUrl = game.getCover().getUrl();
+            if(gameUrl!=null) {
+                gameUrl = "https:" + gameUrl.replace("t_thumb", "t_cover_big");
+            }
         }
         Picasso
                 .get()

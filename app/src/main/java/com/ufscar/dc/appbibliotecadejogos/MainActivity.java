@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import com.ufscar.dc.appbibliotecadejogos.databinding.ActivityMainBinding;
 import com.ufscar.dc.appbibliotecadejogos.fragments.CollectionFragment;
@@ -57,4 +60,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+        return activeNetworkInfo != null
+                && activeNetworkInfo.isConnectedOrConnecting();
+    }
 }
