@@ -10,15 +10,18 @@
         android:id="@+id/pesquisarJogo"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:ems="10"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:drawablePadding="12dp"
+        android:ems="10"
         android:hint="@string/input_hint"
+        android:imeOptions="actionSearch"
         android:inputType="text"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:textSize="14sp"
-        android:imeOptions="actionSearch" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
