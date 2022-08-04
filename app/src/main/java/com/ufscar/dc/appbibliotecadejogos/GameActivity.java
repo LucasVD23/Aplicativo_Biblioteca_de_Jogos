@@ -145,9 +145,9 @@ public class GameActivity extends AppCompatActivity {
                 saveCollection(saved.get(), name, collection);
                 button.setBackgroundColor(Color.parseColor("#F44336"));
                 if (name.equals("zerados"))
-                    button.setText(getString(R.string.add_collection_zerados));
+                    button.setText(getString(R.string.add_collection_completed));
                 else
-                    button.setText(getString(R.string.add_collection_quero));
+                    button.setText(getString(R.string.add_collection_wish_list));
                 saved.set(0);
             }
 

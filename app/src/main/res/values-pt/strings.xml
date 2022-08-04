@@ -9,15 +9,18 @@
     <string name="input_hint">Pesquisar</string>
     <string name="collection_title">Coleção</string>
     <string name="game_rating">Nota</string>
-    <string name="add_collection_zerados">Zerados</string>
-    <string name="add_collection_quero">Quero jogar</string>
+    <string name="add_collection_completed">+ Zerados</string>
+    <string name="add_collection_wish_list">+ Lista de Desejos</string>
     <string name="remove_collection">Remover</string>
     <string name="added_warning">Jogo adicionado à coleção</string>
     <string name="removed_warning">Jogo removido da coleção</string>
     <string name="genres">Gêneros</string>
-    <string name="plataforms">Plataformas</string>
+    <string name="platforms">Plataformas</string>
     <string name="description_title">Descrição</string>
-    <string name="quero_jogar">Quero jogar</string>
-    <string name="zerados">Zerados</string>
+    <string name="wish_list">Lista de Desejos</string>
+    <string name="completed">Zerados</string>
+    <string name="null_value">-</string>
+    <string name="no_description">No description</string>
+    <string name="game_name">Nome</string>
 
 </resources>
