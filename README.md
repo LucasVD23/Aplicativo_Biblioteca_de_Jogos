@@ -15,6 +15,8 @@ Aplicativo desenvolvido para o Trabalho 1 da Disciplina de Desenvolvimento Móve
 
 ### Para executar
 ```
+Há duas formas de executar o aplicativo, pelo Emulador do Android Studio ou pela build no Smartphone:
+    - Pelo emulador: No Android Studio, crie um Dispositovo Virtual Android (AVD) onde o App será instalado, depois na barra de ferramentas, selecione o AVD em que você quer executar o app no menu suspenso do dispositivo de destino, e após isso clique em Run
 
 ``` 
 
