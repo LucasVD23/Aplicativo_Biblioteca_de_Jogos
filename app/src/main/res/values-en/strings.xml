@@ -9,12 +9,15 @@
     <string name="input_hint">Search</string>
     <string name="collection_title">Collection</string>
     <string name="game_rating">Rating</string>
-    <string name="add_collection">Add to Collection</string>
+    <string name="add_collection_zerados">Completed</string>
+    <string name="add_collection_quero">I want</string>
     <string name="remove_collection">Remove</string>
     <string name="added_warning">Game added to the collection</string>
     <string name="removed_warning">Game removed from collection</string>
     <string name="genres">Genres</string>
     <string name="plataforms">Platforms</string>
     <string name="description_title">Description</string>
+    <string name="quero_jogar">I want</string>
+    <string name="zerados">Completed</string>
 
 </resources>

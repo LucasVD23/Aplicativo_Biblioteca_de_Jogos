@@ -59,16 +59,30 @@
                 </androidx.cardview.widget.CardView>
 
                 <Button
-                    android:id="@+id/AddCollection"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/AddCollectionZerados"
+                    android:layout_width="0dp"
                     android:layout_height="52dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginEnd="30dp"
-                    android:text="@string/add_collection"
-                    android:textSize="16sp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="36dp"
+                    android:text="@string/add_collection_zerados"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/AddCollectionQuero"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                <Button
+                    android:id="@+id/AddCollectionQuero"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/add_collection_quero"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/AddCollectionZerados"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

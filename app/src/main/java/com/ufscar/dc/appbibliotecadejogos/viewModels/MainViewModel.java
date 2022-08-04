@@ -15,7 +15,8 @@ import java.util.List;
 public class MainViewModel extends ViewModel {
     final MutableLiveData<Boolean> showLoading = new MutableLiveData<>(false);
     final MutableLiveData<List<Game>> games = new MutableLiveData<>();
-    final MutableLiveData<List<Game>> salvos = new MutableLiveData<>();
+    final MutableLiveData<List<Game>> zerados = new MutableLiveData<>();
+    final MutableLiveData<List<Game>> quero_jogar = new MutableLiveData<>();
     final MutableLiveData<List<Game>> populares = new MutableLiveData<>();
 
     public MutableLiveData<Boolean> getShowLoading() {
@@ -26,8 +27,12 @@ public class MainViewModel extends ViewModel {
         return games;
     }
 
-    public MutableLiveData<List<Game>>getSalvos() {
-        return salvos;
+    public MutableLiveData<List<Game>>getZerados() {
+        return zerados;
+    }
+
+    public MutableLiveData<List<Game>>getQueroJogar() {
+        return quero_jogar;
     }
 
     public MutableLiveData<List<Game>>getPopulares() {
@@ -74,23 +79,49 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
-    public void salvos(ArrayList<Integer> collection) {
+    public void zerados(ArrayList<Integer> collection_zerados) {
         showLoading.setValue(true);
         /*if (!isConnected) {
             errorMessage.setValue("No Internet connection. Try again later");
             return;
         }*/
-        if (collection.isEmpty()) {
+        if (collection_zerados.isEmpty()) {
             showLoading.setValue(false);
             Log.d("teste", "vazio");
             return;
         }
-        GameRepository.getSalvos(collection, new GameRepository.GamesCallback() {
+        GameRepository.getSalvos(collection_zerados, new GameRepository.GamesCallback() {
             @Override
             public void onSuccess(List<Game> list_games) {
                 showLoading.setValue(false);
                 //Log.d("teste", list_games.get(0).getGame().getName());
-                salvos.setValue(list_games);
+                zerados.setValue(list_games);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+
+            }
+        });
+    }
+
+    public void quero_jogar(ArrayList<Integer> collection_quero_jogar) {
+        showLoading.setValue(true);
+        /*if (!isConnected) {
+            errorMessage.setValue("No Internet connection. Try again later");
+            return;
+        }*/
+        if (collection_quero_jogar.isEmpty()) {
+            showLoading.setValue(false);
+            Log.d("teste", "vazio");
+            return;
+        }
+        GameRepository.getSalvos(collection_quero_jogar, new GameRepository.GamesCallback() {
+            @Override
+            public void onSuccess(List<Game> list_games) {
+                showLoading.setValue(false);
+                //Log.d("teste", list_games.get(0).getGame().getName());
+                quero_jogar.setValue(list_games);
             }
 
             @Override

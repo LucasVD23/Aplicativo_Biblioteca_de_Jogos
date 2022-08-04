@@ -14,7 +14,6 @@ import com.ufscar.dc.appbibliotecadejogos.databinding.ActivityGameBinding;
 import com.ufscar.dc.appbibliotecadejogos.models.Game;
 import com.ufscar.dc.appbibliotecadejogos.models.Genre;
 import com.ufscar.dc.appbibliotecadejogos.models.Platform;
-import com.ufscar.dc.appbibliotecadejogos.viewModels.MainViewModel;
 import android.content.SharedPreferences;
 import android.content.Context;
 import android.widget.Toast;
@@ -26,12 +25,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class GameActivity extends AppCompatActivity {
 
     private ActivityGameBinding binding;
-    ArrayList<Integer> collection;
+    ArrayList<Integer> collection_zerados;
+    ArrayList<Integer> collection_quero_jogar;
 
-    private ArrayList<Integer> loadCollection(){
+    private ArrayList<Integer> loadCollection(String name) {
         SharedPreferences preferences = getSharedPreferences("game_collection",Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = preferences.getString("collection", null);
+        String json = preferences.getString("collection_" + name, null);
 
         Type type = new TypeToken<ArrayList<Integer>>() {}.getType();
         ArrayList<Integer> game_collection = gson.fromJson(json, type);
@@ -44,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
         return (game_collection);
     }
 
-    private void saveCollection(int saved){
+    private void saveCollection(int saved, String name, ArrayList<Integer> collection){
         SharedPreferences sharedPreferences = getSharedPreferences("game_collection", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -53,7 +53,7 @@ public class GameActivity extends AppCompatActivity {
 
         String json = gson.toJson(collection);
 
-        editor.putString("collection", json);
+        editor.putString("collection_" + name, json);
 
         editor.apply();
         String msg = (saved == 0? getString(R.string.added_warning) : getString(R.string.removed_warning));
@@ -117,29 +117,37 @@ public class GameActivity extends AppCompatActivity {
                 .error(R.drawable.image_not_found)
                 .into(binding.imageView2);
 
-        collection = loadCollection();
+        collection_zerados = loadCollection("zerados");
+        collection_quero_jogar = loadCollection("quero_jogar");
+        analisaCollections(collection_quero_jogar, game, binding.AddCollectionQuero, "quero_jogar");
+        analisaCollections(collection_zerados, game, binding.AddCollectionZerados, "zerados");
+    }
 
+    public void analisaCollections(ArrayList<Integer> collection, Game game, android.widget.Button button, String name){
         AtomicInteger saved = new AtomicInteger();
         if(collection.contains(game.getId())){
             saved.set(1);
-            binding.AddCollection.setBackgroundColor(Color.parseColor("#7A716E"));
-            binding.AddCollection.setText(getString(R.string.remove_collection));
+            button.setBackgroundColor(Color.parseColor("#7A716E"));
+            button.setText(getString(R.string.remove_collection));
         }
 
-        binding.AddCollection.setOnClickListener(view -> {
+        button.setOnClickListener(view -> {
             if(saved.get() == 0){
                 collection.add(game.getId());
                 Log.d("teste","saved");
-                saveCollection(saved.get());
-                binding.AddCollection.setBackgroundColor(Color.parseColor("#7A716E"));
-                binding.AddCollection.setText(getString(R.string.remove_collection));
+                saveCollection(saved.get(), name, collection);
+                button.setBackgroundColor(Color.parseColor("#7A716E"));
+                button.setText(getString(R.string.remove_collection));
                 saved.set(1);
             }else{
                 collection.remove(game.getId());
                 Log.d("teste","deleted");
-                saveCollection(saved.get());
-                binding.AddCollection.setBackgroundColor(Color.parseColor("#F44336"));
-                binding.AddCollection.setText(getString(R.string.add_collection));
+                saveCollection(saved.get(), name, collection);
+                button.setBackgroundColor(Color.parseColor("#F44336"));
+                if (name.equals("zerados"))
+                    button.setText(getString(R.string.add_collection_zerados));
+                else
+                    button.setText(getString(R.string.add_collection_quero));
                 saved.set(0);
             }
 
