@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Tela inicial de quando o aplicativo é aberto
-        replaceFragment(new HomeFragment(), getString(R.string.home_title));
+        loadFirstScreen();
 
         // Navegação do app pela barra inferior
         binding.bottomNavigationMenu.setOnItemSelectedListener(item -> {
@@ -115,9 +115,25 @@ public class MainActivity extends AppCompatActivity {
         super.attachBaseContext(MyContextWrapper.wrap(newBase,langValue));
     }
 
+    private void loadFirstScreen() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment frag = fragmentManager.findFragmentById(R.id.container);
+        if (frag instanceof CollectionFragment) {
+            replaceFragment(new CollectionFragment(), getString(R.string.collection_title));
+        }
+        else if (frag instanceof ExploreFragment){
+            replaceFragment(new ExploreFragment(), getString(R.string.explore_title));
+        }
+        else {
+            replaceFragment(new HomeFragment(), getString(R.string.home_title));
+        }
+    }
+
 
     private void replaceFragment(Fragment fragment, String title) {
         FragmentManager fragmentManager = getSupportFragmentManager();
+
+
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.commit();
