@@ -14,11 +14,13 @@ Aplicativo desenvolvido para o Trabalho 1 da Disciplina de Desenvolvimento Móve
 - Picasso
 
 ### Para executar
+Há duas formas de executar o aplicativo, pelo Android Studio ou pela linha de comando:
+- Pelo emulador: No Android Studio, crie um Dispositivo Virtual Android (AVD) ou conecte pelo adb seu dispositivo físico, depois na barra de ferramentas, selecione o dispositivo em que você quer executar o app no menu suspenso, e após isso clique em Run
+- Ou executando por linha de comando
 ```
-Há duas formas de executar o aplicativo, pelo Emulador do Android Studio ou pela build no Smartphone:
-    - Pelo emulador: No Android Studio, crie um Dispositovo Virtual Android (AVD) onde o App será instalado, depois na barra de ferramentas, selecione o AVD em que você quer executar o app no menu suspenso do dispositivo de destino, e após isso clique em Run
-
+./gradlew build
 ``` 
+> Versão testada do Android Studio 2021.2.1
 
 ### Funcionamento
 O app é composto por duas activities: 
